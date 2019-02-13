@@ -31,3 +31,25 @@ wallet.transferTo(wallet.address, 100, 'pwd').then(function(data) {
 }).catch(function(error) {
   console.log('fail: ', error)
 })
+
+// Register name for this wallet
+wallet.registerName('somename', 'pwd').then(function(data) {
+    console.log('success: ', data)
+}).catch(function(error) {
+    console.log('fail: ', error)
+})
+
+// Delete name for this wallet
+// This call will fail because a new account has no name
+wallet.deleteName('somename', 'pwd').then(function(data) {
+    console.log('success: ', data)
+}).catch(function(error) {
+    console.log('fail: ', error)
+})
+
+// Subscribe to bucket 0 of specified topic for this wallet for next 10 blocks
+wallet.subscribe('topic', 0, 10, 'pwd', 'identifier').then(function(data) {
+    console.log('success: ', data)
+}).catch(function(error) {
+    console.log('fail: ', error)
+})

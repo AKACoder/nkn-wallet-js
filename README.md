@@ -66,6 +66,33 @@ wallet.transferTo(wallet.address, 100, 'pwd').then(function(data) {
 })
 ```
 
++ register name for this wallet (only a-z and length 8-12)
+```javascript
+wallet.registerName('somename', 'pwd').then(function(data) {
+  console.log('success: ', data)
+}).catch(function(error) {
+  console.log('fail: ', error)
+})
+```
+
++ delete name for this wallet
+```javascript
+wallet.deleteName('somename', 'pwd').then(function(data) {
+  console.log('success: ', data)
+}).catch(function(error) {
+  console.log('fail: ', error)
+})
+```
+
++ subscribe to bucket 0 of specified topic for this wallet for next 10 blocks (publish is done through [nkn-client-js](https://github.com/nknorg/nkn-client-js))
+```javascript
+wallet.subscribe('topic', 0, 10, 'pwd', 'identifier').then(function(data) {
+  console.log('success: ', data)
+}).catch(function(error) {
+  console.log('fail: ', error)
+})
+```
+
 Check [examples](examples) for full examples.
 
 ## Configure
@@ -174,6 +201,45 @@ getPrivateKey()
  *     and the parameter applied is a WalletError instance. !!!
   */
 transferTo(toAddress, value, password)
+```
+
+```javascript
+/***
+ * register name on nkn for current wallet
+ * @param name : string : name to register
+ * @param password : string : wallet password
+ *
+ * !!! the fail function will be called for any register errors  
+ *     and the parameter applied is a WalletError instance. !!!
+  */
+registerName(name, password)
+```
+
+```javascript
+/***
+ * delete name on nkn for current wallet
+ * @param name : string : name to delete
+ * @param password : string : wallet password
+ *
+ * !!! the fail function will be called for any delete errors  
+ *     and the parameter applied is a WalletError instance. !!!
+  */
+deleteName(name, password)
+```
+
+```javascript
+/***
+ * subscribe to topic on nkn for current wallet
+ * @param topic : string : topic to subscribe to
+ * @param bucket : number : bucket of topic to subscribe to
+ * @param duration : number : subscription duration
+ * @param password : string : wallet password
+ * @param identifier : string : optional identifier
+ *
+ * !!! the fail function will be called for any register errors  
+ *     and the parameter applied is a WalletError instance. !!!
+  */
+subscribe(topic, bucket, duration, password, identifier = '')
 ```
 
 ```javascript
